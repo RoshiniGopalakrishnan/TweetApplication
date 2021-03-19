@@ -110,7 +110,7 @@ public class TweetApplication {
 							try {
 								if (userService.validateEmail(email)) {
 									System.out.println("Email is validated");
-									System.out.println("Enter password");
+									System.out.println("Enter new password");
 									String password = sc.readLine();
 									userService.resetPassword(email, password);
 									System.out.println("Password Updated");
@@ -175,7 +175,7 @@ public class TweetApplication {
 					}
 
 					case "8": {
-						System.out.println("Enter the password");
+						System.out.println("Enter new password");
 						String password = sc.readLine();
 						try {
 							if (!userService.validateUser(username,password)) {

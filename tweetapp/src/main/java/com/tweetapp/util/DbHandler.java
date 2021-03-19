@@ -24,7 +24,6 @@ public class DbHandler {
 			connection = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | IOException | SQLException exception) {
 			System.out.println(exception.getMessage());
-			System.out.println("errorrr");
 		}
 		return connection;
 

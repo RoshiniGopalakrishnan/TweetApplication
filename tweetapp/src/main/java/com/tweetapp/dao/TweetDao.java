@@ -19,21 +19,21 @@ public class TweetDao {
 
 	public List<Tweet> getPosts() {
 		connection = DbHandler.getConnection();
-		List<Tweet> postList = new ArrayList<>();
+		List<Tweet> tweetList = new ArrayList<>();
 		try {
 			preparedStatement = connection.prepareStatement(Constants.GET_ALL_TWEETS);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				do {
 					String message = resultSet.getString("tweet_msg");
-					Tweet post = new Tweet();
-					post.setTweet(message);
-					postList.add(post);
+					Tweet tweet = new Tweet();
+					tweet.setTweet(message);
+					tweetList.add(tweet);
 				} while (resultSet.next());
 			} else {
-				System.err.println("No posts found");
+				System.err.println("No tweets found");
 			}
-			return postList;
+			return tweetList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -43,12 +43,12 @@ public class TweetDao {
 				throw new RuntimeException("Connection is not closed properly");
 			}
 		}
-		return postList;
+		return tweetList;
 	}
 
 	public List<Tweet> getPostsByUser(String username) throws Exception {
 		connection = DbHandler.getConnection();
-		List<Tweet> posts = new ArrayList<>();
+		List<Tweet> tweetList = new ArrayList<>();
 		try {
 			preparedStatement = connection.prepareStatement(Constants.GET_USER_TWEETS);
 			preparedStatement.setString(1, username);
@@ -56,14 +56,14 @@ public class TweetDao {
 			if (resultSet.next()) {
 				do {
 					String message = resultSet.getString("tweet_msg");
-					Tweet post = new Tweet();
-					post.setTweet(message);
-					posts.add(post);
+					Tweet tweet = new Tweet();
+					tweet.setTweet(message);
+					tweetList.add(tweet);
 				} while (resultSet.next());
 			} else {
 				throw new Exception();
 			}
-			return posts;
+			return tweetList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -73,7 +73,7 @@ public class TweetDao {
 				throw new RuntimeException("Connection is not closed properly");
 			}
 		}
-		return posts;
+		return tweetList;
 	}
 
 	public void savePost(String tweetMessage, String username) throws Exception {
