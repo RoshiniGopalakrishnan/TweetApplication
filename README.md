@@ -4,7 +4,7 @@ Tweet App is java console application for registered users to post new tweets, v
 
 Guest users cannot see any tweets.
 
-The core modules of tweet app are:
+The Features of tweet app are:
 
 1. User registration and login
 
